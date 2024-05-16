@@ -1,0 +1,2081 @@
+<style>
+    .btn-link {
+        color: #264278;
+    }
+
+    .btn-link:hover {
+        cursor: pointer;
+        background-color: #7098e7;
+        color: #fff;
+        padding: 2px 5px 2px 5px;
+        border-radius: 2px;
+    }
+
+    option {
+        border: solid 1px #dadada;
+    }
+    .display-6 {
+        font-size: 36px !important;
+    }
+   @media screen and (max-width: 1199px) {
+    .display-6{
+        font-size: 26px !important;
+    }
+   }
+</style>
+<!-- <div class="container" style="margin-top: 5em">
+    <div class="card mb-4" >
+        <div class="card-body" style="box-shadow: 2px 2px 2px 2px #dadada;">
+            <div class="row mt-2 mb-2">
+                <div class="col-md-6 col-xl-4 pb-2">
+                    <img src="../../assets/laptop.jpg" class="img-fluid object-fit-sm-contain border rounded"
+                        alt="..." />
+                </div>
+                <div class="col-md-6 col-xl-8">
+                    <p class="display-5"  style="font-weight: 400;">Articles</p>
+                    Here I have included here various how-to articles to get new projects up and running quickly.  Keep checking back as I 
+                    update this list 
+                    <div class="row mt-2">
+                        <div class="col-12 col-lg-8" id="selectList" #selectList>
+                            <select name="title" id="title" [(ngModel)]="article.Title"
+                                (change)="scroll('article' + $event.target.value)" class="form-select">
+                                <option disabled value="-1">--Select--</option>
+                                <option *ngFor="let article of articles" value="{{ article.Id }}"> <i class="fa fa-repeat"></i>
+                                    {{article.Index}} - {{ article.Title }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<div class="container mt-2">
+    <!-- <div class="row mt-5 text-center mb-2">
+        <span class="display-5"> Articles </span>
+    </div>
+    <div class="row mt-2 mb-2 text-center" id="selectList" #selectList>
+        <div class="col-md-4 me-auto">
+            <select name="title" id="title" [(ngModel)]="article.Title"
+                (change)="scroll('article' + $event.target.value)" class="form-select">
+                <option disabled value="-1">--Select--</option>
+                <option *ngFor="let article of articles" value="{{ article.Id }}"> <i class="fa fa-repeat"></i>
+                    {{article.Index}} - {{ article.Title }}
+                </option>
+            </select>
+        </div>
+    </div> -->
+    <div class="row" id="rabbitmq">
+        <div class="col-12">
+            <article class="blog-card" id="article101">
+                <div class="row div-demo-summary">
+                    <div class="col-md-4">
+                        <img src="../../assets/RabbitMQ-1.jpg" class="img-fluid object-fit-sm-contain border rounded"
+                            alt="..." />
+                    </div>
+                    <div class="col-md-8">
+                        <p class="display-6">
+                            <strong>Creating a Message Queue with Rabbit MQ</strong>
+                        </p>
+                        <p>
+                            In this article I show how to create a Message Broker with
+                            RabbitMQ, Docker, and .NET 7.0
+                        </p>
+                        <div class="row mt-2">
+                            <div class="col">
+                                <a data-bs-toggle="collapse" (click)="showDetails(9)" data-bs-target="#collapse9"
+                                    aria-expanded="false" aria-controls="collapse9" class="btn btn--with-icon"><i
+                                        class="btn-icon fa fa-long-arrow-right"></i>{{ isDetails9 ? "READ MORE" : "READ
+                                    LESS" }}</a>
+                            </div>
+                        </div>
+                        <div class="row mt-2" *ngIf="!isDetails9">
+                            <div class="col">
+                                <a data-bs-toggle="collapse" data-bs-target="#collapse9" class="btn-link"
+                                    title="Go to top of page" (click)="scrollTo('selectList', 'isDetails9')">
+                                    <i class="fa fa-times"></i> Close
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="blog-card__info">
+                    <div class="accordion" id="accordion9">
+                        <div class="accordion-item" style="border: none">
+                            <!-- <h2 class="accordion-header" id="heading9">
+                    <a
+                      data-bs-toggle="collapse"
+                      (click)="showDetails(9)"
+                      data-bs-target="#collapse9"
+                      aria-expanded="false"
+                      aria-controls="collapse9"
+                      class="btn btn--with-icon"
+                      ><i class="btn-icon fa fa-long-arrow-right"></i
+                      >{{ isDetails9 ? "READ MORE" : "READ LESS" }}</a
+                    >
+                  </h2> -->
+                            <div id="collapse9" class="accordion-collapse collapse" aria-labelledby="heading9"
+                                data-bs-parent="#accordion9">
+                                <div class="accordion-body p-indent">
+                                    <h6>
+                                        Create a Docker Container to run the RabbitMQ Server
+                                    </h6>
+                                    <div class="row row-indent">
+                                        <div class="col">
+                                            1. Open up a powershell prompt and enter the following:
+                                            <span class="command-text" id="docker-powershell">
+                                                docker run -d --hostname rmq --name rabbit-server -p
+                                                8080:15672 -p 5672:5672 rabbitmq:3-management
+                                            </span>
+                                            <span><a class="pad-left" class="btn-link btn-link-hover"
+                                                    (click)="copyText('docker-powershell')">Copy</a></span>
+                                        </div>
+                                    </div>
+                                    <div class="row row-indent">
+                                        <div class="col">
+                                            2. Open up Docker Desktop and look for 'rabbit-server'
+                                            under Containers
+                                        </div>
+                                    </div>
+                                    <div class="row row-indent">
+                                        <div class="col">
+                                            3. Now open up a browser and type: localhost:8080 which
+                                            should take you to the rabbitmq login screen
+                                        </div>
+                                    </div>
+                                    <div class="row row-indent mb-2">
+                                        <div class="col">
+                                            4. Enter 'guest' for both username and password and
+                                            click the login button
+                                        </div>
+                                    </div>
+
+                                    <h6>Create the Rabbit Sender, Receiver Console Apps</h6>
+                                    <div class="row row-indent">
+                                        <div class="col">
+                                            1. Open up Visual Studio 2022 and create a new .NET 7.0
+                                            Console App, enter 'RabbitMQSender' for the project name
+                                            and 'RabbitMQDemo' for the solution name
+                                        </div>
+                                    </div>
+                                    <div class="row row-indent">
+                                        <div class="col">
+                                            2. Create an additional Console App named
+                                            'RabbitMQReceiver'
+                                        </div>
+                                    </div>
+                                    <div class="row row-indent">
+                                        <div class="col">
+                                            3. Right click on the solution and select 'Manage Nuget
+                                            Packages for Solution'
+                                        </div>
+                                    </div>
+                                    <div class="row row-indent">
+                                        <div class="col">
+                                            4. Go to Browse tab and search for the package
+                                            'RabbitMQ.Client'
+                                        </div>
+                                    </div>
+                                    <div class="row row-indent">
+                                        <div class="col">
+                                            5. Do the same for the package 'Newtonsoft.Json'
+                                        </div>
+                                    </div>
+                                    <div class="row row-indent mb-2">
+                                        <div class="col">
+                                            6. Select the package and install it for both projects
+                                            in the solution
+                                        </div>
+                                    </div>
+                                    <h6>
+                                        Create a (.NET 7.0 Standard) class library named Models
+                                    </h6>
+                                    <div class="row row-indent">
+                                        <div class="col">
+                                            1. Add a class called User to Models and add a few users
+                                            as follows.
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col">
+                                            <span><button type="button" class="btn-copy" style="box-shadow: none"
+                                                    (click)="copyText('user')">
+                                                    Copy
+                                                </button></span>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col">
+                                            <div [innerHTML]="userSafe" id="user"></div>
+                                        </div>
+                                    </div>
+                                    <h6>
+                                        In RabbitMQSender, add the following code to Program.cs
+                                    </h6>
+                                    <div class="row">
+                                        <div class="col">
+                                            <span><button type="button" class="btn-copy" style="box-shadow: none"
+                                                    (click)="copyText('sender')">
+                                                    Copy
+                                                </button></span>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col">
+                                            <div [innerHTML]="senderSafe" id="sender"></div>
+                                        </div>
+                                    </div>
+
+                                    <h6>Modify the Rabbit Receiver Console App</h6>
+                                    <div class="row row-indent">
+                                        <div class="col">
+                                            1. In the RabbitMQReceiver project, open up Program.cs
+                                            and enter the following code:
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col">
+                                            <span><button type="button" class="btn-copy" style="box-shadow: none"
+                                                    (click)="copyText('receiver')">
+                                                    Copy
+                                                </button></span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div [innerHTML]="receiverSafe" id="receiver"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row row-indent">
+                                        <div class="col row-indent">
+                                            2. Right click on the solution and select 'Set Startup
+                                            Projects', select Multiple Startup Projects and include
+                                            both RabbitMQSender and RabbitMQReceiver
+                                        </div>
+                                    </div>
+                                    <div class="row row-indent">
+                                        <div class="col">
+                                            3. Hit F5 to run the project and notice the sender and
+                                            receiver behavior. Since we set the delay to 3 seconds
+                                            each user received and printed to the console every 3
+                                            seconds
+                                        </div>
+                                    </div>
+                                    <div class="row row-indent">
+                                        <div class="col">
+                                            4. This example can be expanded to have multiple
+                                            receivers working with the same collection and without
+                                            duplication
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+    <div class="row mt-5" id="dockerintro">
+        <div class="col-12">
+            <article class="blog-card" id="article102">
+                <div class="row div-demo-summary">
+                    <div class="col-md-4">
+                        <img style="padding:0"
+                            src="../../assets/Docker-Logo_Horizontel_279x131.b8a5c41e56b77706656d61080f6a0217a3ba356d.png"
+                            class="img-fluid object-fit-sm-contain border rounded" alt="..." />
+                    </div>
+                    <div class="col-md-8">
+                        <p class="display-6">
+                            <strong>Introduction to Docker</strong>
+                        </p>
+                        <p>
+                            In this brief introduction I demonstrate how to create docker files, images, and
+                            containers, as well as run apps such as RabbitMQ inside a
+                            docker container
+                        </p>
+                        <div class="row mt-2">
+                            <div class="col">
+                                <a data-bs-toggle="collapse" (click)="showDetails(10)" data-bs-target="#collapse10"
+                                    aria-expanded="false" aria-controls="collapse10" class="btn btn--with-icon"><i
+                                        class="btn-icon fa fa-long-arrow-right"></i>{{ isDetails10 ? "READ MORE" : "READ
+                                    LESS" }}</a>
+                            </div>
+                        </div>
+                        <div class="row mt-2" *ngIf="!isDetails10">
+                            <div class="col">
+                                <a data-bs-toggle="collapse" data-bs-target="#collapse10" class="btn-link"
+                                    title="Go to top of page" (click)="scrollTo('selectList', 'isDetails10')">
+                                    <i class="fa fa-times"></i> Close
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="blog-card__info">
+                    <div class="accordion" id="accordion10">
+                        <div class="accordion-item" style="border: none">
+                            <div id="collapse10" class="accordion-collapse collapse" aria-labelledby="heading10"
+                                data-bs-parent="#accordion10">
+                                <div class="accordion-body p-indent">
+                                    <h6>Setting Up Visual Studio Code</h6>
+                                    <div class="row row-indent">
+                                        <div class="col">
+                                            1. Open Visual Studio Code and browse to the folder you
+                                            want to work in, or create a new folder
+                                        </div>
+                                    </div>
+                                    <div class="row row-indent">
+                                        <div class="col">
+                                            2. Click on the Manage gear icon on bottom left, then
+                                            select Extensions or hit ctrl + shift + x to bring up
+                                            Extensions
+                                        </div>
+                                    </div>
+                                    <div class="row row-indent">
+                                        <div class="col">
+                                            3. Also search for Live Server in Extensions and install
+                                        </div>
+                                    </div>
+                                    <div class="row row-indent">
+                                        <div class="col">4. Search for Docker then install</div>
+                                    </div>
+                                    <div class="row row-indent">
+                                        <div class="col">
+                                            5. Create a new folder named html then create a file
+                                            under this folder named index.html
+                                        </div>
+                                    </div>
+                                    <div class="row row-indent">
+                                        <div class="col">
+                                            6. Add some html to the index.html file as follows:
+                                            <span><a class="btn-link btn-link-hover"
+                                                    (click)="copyText('htmldiv')">Copy</a></span>
+                                            <div id="htmldiv">
+                                                <div class="row row-indent">
+                                                    <div class="col"></div>
+                                                </div>
+                                                <div class="row row-indent">
+                                                    <div class="col"></div>
+                                                </div>
+                                                <div class="row row-indent">
+                                                    <div class="col"></div>
+                                                </div>
+                                                <div class="row row-indent">
+                                                    <div class="col text-danger">
+                                                        &lt;!DOCTYPE html&gt; &lt;html&gt; &lt;head&gt;
+                                                        &lt;/head&gt; &lt;body&gt; &lt;h1&gt;Hello
+                                                        Docker&lt;/h1&gt; &lt;p&gt;this is our docker
+                                                        website&lt;/p&gt; &lt;/body&gt; &lt;/html&gt;
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row row-indent mb-2">
+                                        <div class="col">
+                                            7. Click on Go Live in the lower right hand corner to
+                                            view the web page
+                                        </div>
+                                    </div>
+
+                                    <h6>Create the Docker file</h6>
+                                    <div class="row row-indent">
+                                        <div class="col">
+                                            1. Add a new file named dockerfile under the root
+                                            folder. You may have to create it under html then move
+                                            it up in File Explorer. Note that docker files contain
+                                            no extensions
+                                        </div>
+                                    </div>
+                                    <div class="row row-indent">
+                                        <div class="col">
+                                            2. Go to
+                                            <a href="https://hub.docker.com/"> docker hub</a>
+                                            then click on Explore (top right)
+                                        </div>
+                                    </div>
+                                    <div class="row row-indent">
+                                        <div class="col">3. Do a search for 'httpd'</div>
+                                    </div>
+                                    <div class="row row-indent">
+                                        <div class="col">
+                                            4. Scroll down to 'How to use this image'
+                                        </div>
+                                    </div>
+                                    <div class="row row-indent mb-2">
+                                        <div class="col">
+                                            5. Enter the following script in dockerfile
+                                            <span><a class="btn-link btn-link-hover"
+                                                    (click)="copyText('dockerfile')">Copy</a></span>
+                                            <div id="dockerfile">
+                                                <div class="row">
+                                                    <div class="col pull-left">
+                                                        <code style="padding-left: 1em">
+                                  FROM httpd:alpine
+                                </code>
+                                                    </div>
+                                                </div>
+                                                <div class="row row-indent">
+                                                    <div class="col">
+                                                        <code
+                                                            style="padding-left: 1em">COPY ./html/ /usr/local/;apache2/htdocs/</code>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h6>Create the Docker Image</h6>
+                                    <div class="row row-indent">
+                                        <div class="col">
+                                            1. Open up a new terminal
+                                            <br />
+                                        </div>
+                                    </div>
+                                    <div class="row row-indent">
+                                        <div class="col">
+                                            2. Enter the following command:
+                                            <span id="docker-build">docker build -t hello-docker:1.0.0 .</span>
+                                            <span style="padding-left: 0.5em"><a class="btn-link btn-link-hover"
+                                                    (click)="copyText('docker-build')">Copy</a></span>
+                                        </div>
+                                    </div>
+                                    <div class="row row-indent">
+                                        <div class="col">
+                                            <span class="text-danger">* Important *</span>
+                                            Do not forget the [space .], (i.e. space and dot) at the
+                                            end or you will get the following error message: 'docker
+                                            build" requires exactly 1 argument.'
+                                        </div>
+                                    </div>
+                                    <div class="row row-indent mb-2">
+                                        <div class="col">
+                                            3. In the terminal enter 'docker images' to view the
+                                            image we just created
+                                        </div>
+                                    </div>
+                                    <h6>Create the Docker Container</h6>
+                                    <div class="row row-indent mb-2">
+                                        <div class="col">
+                                            1. Open a terminal and enter the following command:
+                                            <span id="docker-container">docker run --name first-container -p 8080:80
+                                                hello-docker:1.0.0</span>
+                                            <span style="padding-left: 0.5em"><a class="btn-link btn-link-hover"
+                                                    (click)="copyText('docker-container')">Copy</a></span>
+                                        </div>
+                                    </div>
+                                    <h6>Running RabbitMQ Inside a Docker Container</h6>
+                                    <div class="row row-indent">
+                                        <div class="col">
+                                            1. In VS Code stop and remove any containers that may
+                                            still be running on port 8080
+                                            <div class="row row-indent">
+                                                <div class="col">
+                                                    In the terminal enter 'docker stop first-container'
+                                                </div>
+                                            </div>
+                                            <div class="row row-indent">
+                                                <div class="col">
+                                                    In the terminal enter 'docker rm first-container'
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row row-indent">
+                                        <div class="col">
+                                            2. Go to
+                                            <a href="https://hub.docker.com/_/rabbitmq">
+                                                docker hub</a>
+                                        </div>
+                                    </div>
+                                    <div class="row row-indent">
+                                        <div class="col">
+                                            3. Scroll to Management Plugin section and copy command:
+                                            <span id="docker-run-rabbitmq" class="text-danger">docker run -d --hostname
+                                                my-rabbit --name some-rabbit
+                                                -p 8080:15672 rabbitmq:3-management</span>&nbsp;
+                                            <span><a class="btn-link btn-link-hover"
+                                                    (click)="copyText('docker-run-rabbitmq')">Copy</a></span>
+                                        </div>
+                                    </div>
+                                    <div class="row row-indent">
+                                        <div class="col">
+                                            4. Back in VS Code paste the command in the terminal:
+                                            <div class="row row-indent">
+                                                <div class="col">
+                                                    docker run -d --hostname my-rabbit --name
+                                                    some-rabbit -p 8080:15672 rabbitmq:3-management
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row row-indent mb-2">
+                                        <div class="col">
+                                            5. In browser open up localhost:8080
+                                        </div>
+                                    </div>
+                                    <div class="row row-indent mb-2">
+                                        <div class="col">
+                                            6. You should be at the RabbitMQ login screen
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col">
+                                            <img src="../../assets/rabbit-login.png"
+                                                class="img-fluid object-fit-sm-contain border rounded" alt="..." />
+                                            <div class="row row-indent">
+                                                <div class="row row-indent">
+                                                    <div class="col text-secondary">Credentials:</div>
+                                                </div>
+                                                &nbsp;
+                                                <div class="col">Username: guest</div>
+                                            </div>
+                                            <div class="row row-indent">
+                                                &nbsp;
+                                                <div class="col">Password: guest</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h6>Pulling Images from Docker Hub</h6>
+                                    <div class="row row-indent">
+                                        <div class="col">
+                                            1. Go to docker hub and search for the image, in this
+                                            case MySQL, then pull from top right corner
+                                        </div>
+                                    </div>
+                                    <div class="row row-indent">
+                                        <div class="col">
+                                            2. Back in VS Code enter docker images in the terminal
+                                            to view the pulled image
+                                        </div>
+                                    </div>
+                                    <div class="row row-indent">
+                                        <div class="col">
+                                            3. You should see the mysql image listed
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+
+    <div class="row mt-5" id="netcore">
+        <div class="col-12">
+            <article class="blog-card" id="article103">
+                <div class="row div-demo-summary">
+                    <div class="col-md-4">
+                        <img src="../../assets/asp-net-web-api-tutorial-c50d29ba46cb58d07cc69be13c078df8 (2).png"
+                            class="img-fluid object-fit-sm-contain border rounded" alt="..." />
+                    </div>
+                    <div class="col-md-8">
+                        <p class="display-6">
+                            <strong>REST API with Visual Studio 2022 & .NET 7.0</strong>
+                        </p>
+                        <p>
+                            In this article I show how to create a .NET Core API using Entity
+                            Framework Core
+                        </p>
+                        <div class="row mt-2">
+                            <div class="col">
+                                <a data-bs-toggle="collapse" (click)="showDetails(3)" data-bs-target="#collapse3"
+                                    aria-expanded="false" aria-controls="collapse3" class="btn btn--with-icon"><i
+                                        class="btn-icon fa fa-long-arrow-right"></i>{{ isDetails3 ? "READ MORE" : "READ
+                                    LESS" }}</a>
+                            </div>
+                        </div>
+                        <div class="row mt-2" *ngIf="!isDetails3">
+                            <div class="col">
+                                <a data-bs-toggle="collapse" data-bs-target="#collapse3" class="btn-link"
+                                    title="Go to top of page" (click)="scrollTo('selectList', 'isDetails3')">
+                                    <i class="fa fa-times"></i> Close
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="blog-card__info">
+                    <div class="accordion" id="accordion3">
+                        <div class="accordion-item" style="border: none">
+                            <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="heading3"
+                                data-bs-parent="#accordion3">
+                                <div class="accordion-body p-indent">
+                                    <h6>Setting up the .NET Core API</h6>
+                                    <ol>
+                                        <li>
+                                            Install the following nuget packages
+                                            <ul style="list-style: square; overflow-x: auto">
+                                                <li>Microsoft.EntityFrameworkCore.SqlServer</li>
+                                                <li>Microsoft.EntityFrameworkCore.Tools</li>
+                                                <li>Bricelam.EntityFrameworkCore.Pluralizer</li>
+                                                <li>Microsoft.AspNetCore.Mvc.NewtonsoftJson</li>
+                                                <li>Microsoft.Extensions.Configuration</li>
+                                                <li>
+                                                    Microsoft.Extensions.Configuration.FileExtensions
+                                                </li>
+                                                <li>Microsoft.Extensions.Configuration.Json</li>
+                                            </ul>
+                                        </li>
+                                        <br />
+                                        <li>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            Using Package Manager Console, Scaffold
+                                                            DbContext as follows
+                                                            <span><a class="pad-left" class="btn-link btn-link-hover"
+                                                                    (click)="copyText('pre2')">Copy</a></span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <pre id="pre2" class="pre-content">
+                                    {{ dbContext }}
+                                </pre>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row mb-2">
+                                                <div class="col">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            In appsettings.json, add Connecton Strings and
+                                                            Application Settings
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                        <div class="col">
+                                                            <span>
+                                                                <button type="button" class="btn-copy"
+                                                                    style="box-shadow: none" (click)="copyText('pre1')">
+                                                                    Copy
+                                                                </button></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div [innerHTML]="connStringsSafe" id="pre1"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row mb-2">
+                                                <div class="col">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            Add the following to the Program.cs class
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                        <div class="col">
+                                                            <span>
+                                                                <button type="button" class="btn-copy"
+                                                                    style="box-shadow: none" (click)="copyText('pre3')">
+                                                                    Copy
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div [innerHTML]="item4Safe" id="pre3"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row mb-2">
+                                                <div class="col">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            In your dbcontext class, OnConfiguring method,
+                                                            replace the connection string with the following
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                        <div class="col">
+                                                            <span>
+                                                                <button type="button" class="btn-copy"
+                                                                    style="box-shadow: none" (click)="copyText('pre4')">
+                                                                    Copy
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div [innerHTML]="item9Safe" id="pre4"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+    <!-- </div> -->
+
+    <div class="row mt-5">
+        <div class="col-12">
+            <article class="blog-card" id="article104">
+                <div class="row div-demo-summary">
+                    <div class="col-md-4">
+                        <img src="../../assets/json-web-tokens.png"
+                            class="img-fluid object-fit-sm-contain border rounded" alt="..." />
+                    </div>
+                    <div class="col-md-8">
+                        <p class="display-6">
+                            <strong>Open API with JSON Web Tokens & .NET Core</strong>
+                        </p>
+                        <p>
+                            With this example I provide a step by step approach to
+                            implementing Authorization and Authentication using JSON Web
+                            Tokens and .NET Core API
+                        </p>
+                        <div class="row mt-2">
+                            <div class="col">
+                                <a data-bs-toggle="collapse" (click)="showDetails(4)" data-bs-target="#collapse4"
+                                    aria-expanded="false" aria-controls="collapse4" class="btn btn--with-icon"><i
+                                        class="btn-icon fa fa-long-arrow-right"></i>{{ isDetails4 ? "READ MORE" : "READ
+                                    LESS" }}</a>
+                            </div>
+                        </div>
+                        <div class="row mt-2" *ngIf="!isDetails4">
+                            <div class="col">
+                                <a data-bs-toggle="collapse" data-bs-target="#collapse4" class="btn-link"
+                                    title="Go to top of page" (click)="scrollTo('selectList', 'isDetails4')">
+                                    <i class="fa fa-times"></i> Close
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="blog-card__info">
+                    <div class="accordion" id="accordion4">
+                        <div class="accordion-item" style="border: none">
+                            <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="heading4"
+                                data-bs-parent="#accordion4">
+                                <div class="accordion-body p-indent">
+                                    <h6>Part 1: Setup / Models</h6>
+                                    <div class="row">
+                                        <div class="col">
+                                            <ol>
+                                                <li style="padding-bottom: 2px">
+                                                    First we need to
+                                                    <a href="#netcore" class="btn-link">Create the .NET Core API</a>
+                                                </li>
+                                                <li>
+                                                    <div class="row">
+                                                        <div class="col">Add the following Models</div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                        <div class="col">
+                                                            <span>
+                                                                <button type="button" class="btn-copy"
+                                                                    style="box-shadow: none"
+                                                                    (click)="copyText('preIdentityModels')">
+                                                                    Copy
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div [innerHTML]="identityModelsSafe"
+                                                                id="preIdentityModels"></div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                    <h6>Part 2: Auth Context</h6>
+
+                                    <ol>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            Create the AuthenticationContext class in Models
+                                                            folder
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                        <div class="col">
+                                                            <span>
+                                                                <button type="button" class="btn-copy"
+                                                                    style="box-shadow: none"
+                                                                    (click)="copyText('authenticationContext')">
+                                                                    Copy
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div [innerHTML]="authenticationContextSafe"
+                                                                id="authenticationContext"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ol>
+                                    <h6>Part 3: Configuration</h6>
+                                    <ol>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="row">
+                                                        <div class="col">Add Configuration classes</div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                        <div class="col">
+                                                            <span>
+                                                                <button type="button" class="btn-copy"
+                                                                    style="box-shadow: none"
+                                                                    (click)="copyText('configuration')">
+                                                                    Copy
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div [innerHTML]="configurationSafe" id="configuration">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            Configure connection, application, and identity
+                                                            settings
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                        <div class="col">
+                                                            <span>
+                                                                <button type="button" class="btn-copy"
+                                                                    style="box-shadow: none"
+                                                                    (click)="copyText('startup')">
+                                                                    Copy
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div [innerHTML]="startupSafe" id="startup"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ol>
+                                    <h6>Part 4: Migrations</h6>
+                                    <ol>
+                                        <li>
+                                            Using Package Manager Console, add code first migrations
+                                            <ul style="list-style: square">
+                                                <li>PM> add-migration initial</li>
+                                                <li>PM> update-database</li>
+                                                <li>
+                                                    Check SQL Server, we should now have a new database
+                                                    matching the name we gave it in appsettings.json
+                                                    connection string
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            Add a default admin role in sql database dbo.Role table
+                                            <ul style="list-style: square">
+                                                <li>
+                                                    {{ jsonBody }}
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ol>
+                                    <h6>Part 5: Authorization</h6>
+                                    <ol>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            Create new folder Helpers, then add the
+                                                            following class
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                        <div class="col">
+                                                            <span>
+                                                                <button type="button" class="btn-copy"
+                                                                    style="box-shadow: none"
+                                                                    (click)="copyText('authHelper')">
+                                                                    Copy
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div [innerHTML]="authHelperSafe" id="authHelper"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ol>
+                                    <h6>Part 6: Create the API Controller</h6>
+                                    <ol>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            Add the ApplicationUserController as follows
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                        <div class="col">
+                                                            <span>
+                                                                <button type="button" class="btn-copy"
+                                                                    style="box-shadow: none"
+                                                                    (click)="copyText('controller')">
+                                                                    Copy
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div [innerHTML]="controllerSafe" id="controller"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            Add a default admin role in sql database dbo.Role table
+                                            <ul style="list-style: square">
+                                                <li>
+                                                    {{ jsonBody }}
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ol>
+                                    <h6>Part 7: Test User</h6>
+                                    <ol>
+                                        <li>
+                                            In Postman, add a new Post request for user registration
+                                            <ul style="list-style: square; overflow-x: auto">
+                                                <li>
+                                                    https://localhost:port/api/ApplicationUser/Register
+                                                    (example)
+                                                </li>
+                                                <li>
+                                                    Add request body (JSON format): {{ jsonBody }}
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            For Login, just change the endpoint from Register to
+                                            Login
+                                            <ul style="list-style: square; overflow-x: auto">
+                                                <li>
+                                                    https://localhost:port/api/ApplicationUser/Login
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col">
+                                                    The response should be a user token as follows:
+                                                    <span>
+                                                        <a class="pad-left" class="btn-link btn-link-hover"
+                                                            (click)="copyText('token')">Copy</a>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <pre id="token" class="pre-content">
+                                {{ token }}</pre>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-12">
+            <article class="blog-card" id="article105">
+                <div class="row div-demo-summary">
+                    <div class="col-md-4">
+                        <img src="../../assets/angular.png" class="img-fluid object-fit-sm-contain border rounded"
+                            alt="..." />
+                    </div>
+                    <div class="col-md-8">
+                        <p class="display-6">
+                            <strong>Open API | JSON Web Tokens: Angular Client</strong>
+                        </p>
+                        <p>
+                            This example expands on the previous Open API example by providing
+                            step by step client implementation using Angular 14
+                        </p>
+                        <div class="row mt-2">
+                            <div class="col">
+                                <a data-bs-toggle="collapse" (click)="showDetails(8)" data-bs-target="#collapse44"
+                                    aria-expanded="false" aria-controls="collapse44" class="btn btn--with-icon"><i
+                                        class="btn-icon fa fa-long-arrow-right"></i>{{ isDetails8 ? "READ MORE" : "READ
+                                    LESS" }}</a>
+                            </div>
+                        </div>
+                        <div class="row mt-2" *ngIf="!isDetails8">
+                            <div class="col">
+                                <a data-bs-toggle="collapse" data-bs-target="#collapse44" class="btn-link"
+                                    title="Go to top of page" (click)="scrollTo('selectList', 'isDetails8')">
+                                    <i class="fa fa-times"></i> Close
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="blog-card__info">
+                    <div class="accordion" id="accordion4">
+                        <div class="accordion-item" style="border: none">
+                            <div id="collapse44" class="accordion-collapse collapse" aria-labelledby="heading44"
+                                data-bs-parent="#accordion44">
+                                <div class="accordion-body p-indent">
+                                    <h6>Part 1: Auth Interceptor</h6>
+                                    <p>
+                                        The AuthInterceptor class intercepts and handles HTTP
+                                        requests and before they are sent to the server. This is
+                                        by achieved by implementing the HTTPInterceptor interface.
+                                        In this example the intercept method checks for an
+                                        authorization token and adds it to the request header. If
+                                        unauthorized (401 error) the user is redirected to the
+                                        login screen
+                                    </p>
+                                    <ol>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            Inside the src/app folder, create a new folder
+                                                            named <strong>auth</strong> and add a new file
+                                                            named <strong>auth.interceptor.ts</strong>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                        <div class="col">
+                                                            <span>
+                                                                <button type="button" class="btn-copy"
+                                                                    style="box-shadow: none"
+                                                                    (click)="copyText('authInterceptorTs')">
+                                                                    Copy
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div [innerHTML]="authInterceptorTsSafe"
+                                                                id="authInterceptorTs"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ol>
+                                    <h6>
+                                        Part 2: Create the user, login, and register components
+                                    </h6>
+                                    <p>
+                                        The user service will handles http requests to the .NET
+                                        Core API using the HttpClient service. It also performs
+                                        user authentication, role matching, password reset, and
+                                        user profiles
+                                    </p>
+                                    <div class="row">
+                                        <div class="col">
+                                            <ol>
+                                                <li>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            In VS Code, open a new terminal under src/app
+                                                            and enter the following command:
+                                                            <strong>ng g c user</strong> and change the
+                                                            user.component.html file as follows:
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                        <div class="col">
+                                                            <span>
+                                                                <button type="button" class="btn-copy"
+                                                                    style="box-shadow: none"
+                                                                    (click)="copyText('userHtml')">
+                                                                    Copy
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div [innerHTML]="userHtmlSafe" id="userHtml"></div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            Create a folder inside user named
+                                                            <strong>shared</strong> and inside add the user
+                                                            service as follows:
+                                                            <strong>ng g s user-service</strong>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                        <div class="col">
+                                                            <span>
+                                                                <button type="button" class="btn-copy"
+                                                                    style="box-shadow: none"
+                                                                    (click)="copyText('userServiceTs')">
+                                                                    Copy
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div [innerHTML]="userServiceTsSafe" id="userServiceTs">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            Add ngx-toastr: (terminal)<strong>
+                                                                npm i ngx-toastr</strong>, then add the following
+                                                            imports to
+                                                            app.module.ts
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                        <div class="col">
+                                                            <span>
+                                                                <button type="button" class="btn-copy"
+                                                                    style="box-shadow: none"
+                                                                    (click)="copyText('appModule1')">
+                                                                    Copy
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div [innerHTML]="appModule1Safe" id="appModule1"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            Add to the imports array in app.module.ts
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                        <div class="col">
+                                                            <span>
+                                                                <button type="button" class="btn-copy"
+                                                                    style="box-shadow: none"
+                                                                    (click)="copyText('appModule3')">
+                                                                    Copy
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div [innerHTML]="appModule3Safe" id="appModule3"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            Add the user service to the providers array in
+                                                            app.module.ts
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                        <div class="col">
+                                                            <span>
+                                                                <button type="button" class="btn-copy"
+                                                                    style="box-shadow: none"
+                                                                    (click)="copyText('appModule2')">
+                                                                    Copy
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div [innerHTML]="appModule2Safe" id="appModule2"></div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            Inside the user folder create the login
+                                                            component and change the login.component.html
+                                                            file as follows:
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                        <div class="col">
+                                                            <span>
+                                                                <button type="button" class="btn-copy"
+                                                                    style="box-shadow: none"
+                                                                    (click)="copyText('loginHtml')">
+                                                                    Copy
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div [innerHTML]="loginHtmlSafe" id="loginHtml"></div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            Do the same for login.component.ts:
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                        <div class="col">
+                                                            <span>
+                                                                <button type="button" class="btn-copy"
+                                                                    style="box-shadow: none"
+                                                                    (click)="copyText('loginTs')">
+                                                                    Copy
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div [innerHTML]="loginTsSafe" id="loginTs"></div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            Similarly, create the register component and
+                                                            replace the register.component.html template as
+                                                            follows:
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                        <div class="col">
+                                                            <span>
+                                                                <button type="button" class="btn-copy"
+                                                                    style="box-shadow: none"
+                                                                    (click)="copyText('registerHtml')">
+                                                                    Copy
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div [innerHTML]="registerHtmlSafe" id="registerHtml"></div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            Replace the register.component.ts with the
+                                                            following:
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                        <div class="col">
+                                                            <span>
+                                                                <button type="button" class="btn-copy"
+                                                                    style="box-shadow: none"
+                                                                    (click)="copyText('registerTs')">
+                                                                    Copy
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div [innerHTML]="registerTsSafe" id="registerTs"></div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                    <h6>Part 3: Auth Guard</h6>
+                                    <div class="row">
+                                        <div class="col">
+                                            <p>
+                                                AuthGuard is used to prevent unauthorized access to
+                                                routes in an Angular app. It implements the
+                                                CanActivate interface which controls whether a
+                                                particular route can be activated. This example checks
+                                                local storage for a user authorization token (JSON Web
+                                                Token) and redirects user to the login screen if token
+                                                is null. If Roles Based Authorization is used, the
+                                                user will be redirected to a forbidden (403) screen if
+                                                permissions fail
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <ol>
+                                                <li>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            Inside the auth folder create a file named
+                                                            <strong>auth.guard.ts</strong> as follows:
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                        <div class="col">
+                                                            <span>
+                                                                <button type="button" class="btn-copy"
+                                                                    style="box-shadow: none"
+                                                                    (click)="copyText('authGuardTs')">
+                                                                    Copy
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div [innerHTML]="authGuardTsSafe" id="authGuardTs"></div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                    <h6>Part 4: Add Routing</h6>
+                                    <p>
+                                        Sets the route paths for the login and register components
+                                        and sets the home component as the default route. It also
+                                        activates the AuthGuard to prevent unauthorized access
+                                    </p>
+                                    <ol>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            In the app-routing-module.ts file, import the
+                                                            AuthGuard class and add the following routes:
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                        <div class="col">
+                                                            <span>
+                                                                <button type="button" class="btn-copy"
+                                                                    style="box-shadow: none"
+                                                                    (click)="copyText('appRoutesTs')">
+                                                                    Copy
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div [innerHTML]="appRoutesTsSafe" id="appRoutesTs"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-12">
+            <article class="blog-card" id="article106">
+                <div class="row div-demo-summary">
+                    <div class="col-md-4">
+                        <img src="../../assets/asp-net-web-api-tutorial-c50d29ba46cb58d07cc69be13c078df8 (2).png"
+                            class="img-fluid object-fit-sm-contain border rounded" alt="..." />
+                    </div>
+                    <div class="col-md-8">
+                        <p class="display-6">
+                            <strong>Basic CRUD Operations with .NET Core
+                            </strong>
+                        </p>
+                        <p>
+                            With this example I show how to create a simple CRUD API using the
+                            Repository / Unit of Work pattern with dependency injection
+                        </p>
+                        <div class="row mt-2">
+                            <div class="col">
+                                <a data-bs-toggle="collapse" (click)="showDetails(7)" data-bs-target="#collapse7"
+                                    aria-expanded="false" aria-controls="collapse7" class="btn btn--with-icon"><i
+                                        class="btn-icon fa fa-long-arrow-right"></i>{{ isDetails7 ? "READ MORE" : "READ
+                                    LESS" }}</a>
+                            </div>
+                        </div>
+                        <div class="row mt-2" *ngIf="!isDetails7">
+                            <div class="col">
+                                <a data-bs-toggle="collapse" data-bs-target="#collapse7" class="btn-link"
+                                    title="Go to top of page" (click)="scrollTo('selectList', 'isDetails7')">
+                                    <i class="fa fa-times"></i> Close
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="blog-card__info">
+                    <div class="accordion" id="accordion7">
+                        <div class="accordion-item" style="border: none">
+                            <div id="collapse7" class="accordion-collapse collapse" aria-labelledby="heading7"
+                                data-bs-parent="#accordion7">
+                                <div class="accordion-body p-indent">
+                                    <h6>Part 1: Setup / Repository Layer</h6>
+                                    <div class="row">
+                                        <div class="col">
+                                            <ol>
+                                                <li style="padding-bottom: 2px">
+                                                    First we need to
+                                                    <a href="#netcore" class="btn-link">Create the .NET Core API</a>
+                                                </li>
+                                                <li>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            Add a folder named Repository and add the
+                                                            IRepository interface
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                        <div class="col">
+                                                            <span>
+                                                                <button type="button" class="btn-copy"
+                                                                    style="box-shadow: none"
+                                                                    (click)="copyText('iRepository')">
+                                                                    Copy
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div [innerHTML]="iRepositorySafe" id="iRepository"></div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            In the same folder, add the RepositoryBase class
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                        <div class="col">
+                                                            <span>
+                                                                <button type="button" class="btn-copy"
+                                                                    style="box-shadow: none"
+                                                                    (click)="copyText('repositoryBase')">
+                                                                    Copy
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div [innerHTML]="repositoryBaseSafe" id="repositoryBase">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            In the same folder, add the Repository class
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                        <div class="col">
+                                                            <span>
+                                                                <button type="button" class="btn-copy"
+                                                                    style="box-shadow: none"
+                                                                    (click)="copyText('repository')">
+                                                                    Copy
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div [innerHTML]="repositorySafe" id="repository"></div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                    <h6>Part 2: Service Layer (unit of work)</h6>
+                                    <ol>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            Create a new folder named Services and add the
+                                                            ICustomerService interface
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                        <div class="col">
+                                                            <span>
+                                                                <button type="button" class="btn-copy"
+                                                                    style="box-shadow: none"
+                                                                    (click)="copyText('iCustomerService')">
+                                                                    Copy
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div [innerHTML]="iCustomerServiceSafe"
+                                                                id="iCustomerService"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            In the same folder add the ServicesBase class
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                        <div class="col">
+                                                            <span>
+                                                                <button type="button" class="btn-copy"
+                                                                    style="box-shadow: none"
+                                                                    (click)="copyText('servicesBase')">
+                                                                    Copy
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div [innerHTML]="servicesBaseSafe" id="servicesBase"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            In the same folder add the CustomerService class
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                        <div class="col">
+                                                            <span>
+                                                                <button type="button" class="btn-copy"
+                                                                    style="box-shadow: none"
+                                                                    (click)="copyText('customerServiceApi')">
+                                                                    Copy
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div [innerHTML]="customerServiceApiSafe"
+                                                                id="customerServiceApi"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ol>
+                                    <h6>Part 3: Add the API Controller</h6>
+                                    <ol>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            In Controllers folder, add the Customers API
+                                                            Controller (Add API controller with actions,
+                                                            using Entity Framework) and replace the existing
+                                                            code with the following:
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                        <div class="col">
+                                                            <span>
+                                                                <button type="button" class="btn-copy"
+                                                                    style="box-shadow: none"
+                                                                    (click)="copyText('apiController')">
+                                                                    Copy
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div [innerHTML]="apiControllerSafe" id="apiController">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ol>
+                                    <h6>Part 4: Register Services & Test with Swagger</h6>
+                                    <ol>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            In Startup.cs, ConfigureServices method, add the
+                                                            following code
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                        <div class="col">
+                                                            <span>
+                                                                <button type="button" class="btn-copy"
+                                                                    style="box-shadow: none"
+                                                                    (click)="copyText('registerServices')">
+                                                                    Copy
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div [innerHTML]="registerServicesSafe"
+                                                                id="registerServices"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            Run the application and test each CRUD method using the
+                                            Swagger UI
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-12">
+            <article class="blog-card" id="article107">
+                <div class="row div-demo-summary">
+                    <div class="col-md-4">
+                        <img src="../../assets/Microsoft-Azure-e1667739082282.jpg"
+                            class="img-fluid object-fit-sm-contain border rounded" alt="..." />
+                    </div>
+                    <div class="col-md-8">
+                        <p class="display-6">
+                            <strong>Deploying Angular Client to Azure</strong>
+                        </p>
+                        <p>
+                            In this article I demonstrate how to deploy an angular client app
+                            from a local git repo to an Azure App Service using the Azure
+                            Deployment Center
+                        </p>
+                        <!-- <div class="mt-2">
+                            <p>
+                                <a data-bs-toggle="collapse" (click)="showDetails(1)" data-bs-target="#collapse1"
+                                    aria-expanded="false" aria-controls="collapse1" class="btn btn--with-icon"><i
+                                        class="btn-icon fa fa-long-arrow-right"></i>{{ isDetails1 ? "READ MORE" : "READ
+                                    LESS" }}</a>
+                            </p>
+                        </div> -->
+                        <div class="row mt-2">
+                            <div class="col">
+                                <a data-bs-toggle="collapse" (click)="showDetails(1)" data-bs-target="#collapse1"
+                                    aria-expanded="false" aria-controls="collapse1" class="btn btn--with-icon"><i
+                                        class="btn-icon fa fa-long-arrow-right"></i>{{ isDetails1 ? "READ MORE" : "READ
+                                    LESS" }}</a>
+                            </div>
+                        </div>
+                        <div class="row mt-2" *ngIf="!isDetails1">
+                            <div class="col">
+                                <a data-bs-toggle="collapse" data-bs-target="#collapse1" class="btn-link"
+                                    title="Go to top of page" (click)="scrollTo('selectList', 'isDetails1')">
+                                    <i class="fa fa-times"></i> Close
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="blog-card__info">
+                    <div class="accordion" id="accordion1">
+                        <div class="accordion-item" style="border: none">
+                            <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1"
+                                data-bs-parent="#accordion1">
+                                <div class="accordion-body p-indent">
+                                    <!-- <h3 class="demo-title">1 - In Azure Portal</h3> -->
+                                    <h6>1 - In Azure Portal</h6>
+                                    <ol>
+                                        <li>Create a new Azure App Service (Create Web App)</li>
+                                        <li>
+                                            Once it is finished deploying click (upper right of
+                                            screen) Go to Resource button
+                                        </li>
+                                        <li>
+                                            Click on Deployment Center (on left menu under
+                                            Deployment)
+                                        </li>
+                                        <li>Select Local Git</li>
+                                        <li>
+                                            Select App Service build service box and click Continue
+                                        </li>
+                                        <li>Click Finish</li>
+                                        <li style="overflow-x: auto">
+                                            Copy the uri from the Git Clone Uri (ex:
+                                            https://danielcassin.scm.azurewebsites.net:443/danielcassin.git)
+                                        </li>
+                                        <li>
+                                            Click on Deployment Credentials and setup/copy username
+                                            & password as you will need it for git local repository
+                                        </li>
+                                    </ol>
+                                    <!-- <h3 class="demo-title">2 - In Angular CLI</h3> -->
+                                    <h6>2 - In Angular CLI</h6>
+                                    <ol>
+                                        <li>
+                                            In order to create / update a dist folder which you will
+                                            use for deployment to production enter the following
+                                            command:<br />
+                                            <span class="cmd">ng build --prod</span><br />
+                                        </li>
+                                        <li>
+                                            In File Explorer create a new folder above the project
+                                            name (../Azure)
+                                        </li>
+                                        <li>
+                                            Inside this folder (in npm), create a new git repo with
+                                            the following command:<br />
+                                            <span class="cmd">git init</span>
+                                        </li>
+                                        <li>
+                                            Copy the contents of the dist folder into this new
+                                            folder
+                                        </li>
+                                        <li>
+                                            Add files to the git repo: <br />
+                                            <span class="cmd">git add *.*</span>
+                                        </li>
+                                        <li>
+                                            Commit the new changes: <br />
+                                            <span class="cmd">git commit --message "initial checkin"</span>
+                                        </li>
+                                        <li style="overflow-x: auto">
+                                            Push changes to Azure app service: <br /><span class="cmd">git remote add
+                                                origin
+                                                https://dcassin234@jungle-client.scm.azurewebsites.net:443/jungle-client.git</span>
+                                        </li>
+                                        <li>
+                                            After Initial Check in (anytime you want to make
+                                            changes) just repeat as follows
+                                            <ol>
+                                                <li>
+                                                    <span class="cmd">ng build --prod </span>(copy/paste
+                                                    dist folder contents into azure folder)
+                                                </li>
+                                                <li>
+                                                    <span class="cmd">git add *.*</span>
+                                                </li>
+                                                <li>
+                                                    <span class="cmd">git commit -m(essage) “some message”</span>
+                                                </li>
+                                                <li>
+                                                    <span class="cmd">git push origin master</span>
+                                                </li>
+                                            </ol>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-12">
+            <article class="blog-card" id="article108">
+                <div class="row div-demo-summary">
+                    <div class="col-md-4">
+                        <img src="../../assets/Microsoft-Azure-e1667739082282.jpg"
+                            class="img-fluid object-fit-sm-contain border rounded" alt="..." />
+                    </div>
+                    <div class="col-md-8">
+                        <p class="display-6">
+                            <strong>Azure Dev Ops</strong>
+                        </p>
+                        <p>
+                            In this article I show how to set up an Azure SQL Database, App Service
+                            and Pipeline
+                        </p>
+                        <div class="row mt-2">
+                            <div class="col">
+                                <a data-bs-toggle="collapse" (click)="showDetails(2)" data-bs-target="#collapse2"
+                                    aria-expanded="false" aria-controls="collapse2" class="btn btn--with-icon"><i
+                                        class="btn-icon fa fa-long-arrow-right"></i>{{ isDetails2 ? "READ MORE" : "READ
+                                    LESS" }}</a>
+                            </div>
+                        </div>
+                        <div class="row mt-2" *ngIf="!isDetails2">
+                            <div class="col">
+                                <a data-bs-toggle="collapse" data-bs-target="#collapse2" class="btn-link"
+                                    title="Go to top of page" (click)="scrollTo('selectList', 'isDetails2')">
+                                    <i class="fa fa-times"></i> Close
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="blog-card__info">
+                    <div class="accordion" id="accordion2">
+                        <div class="accordion-item" style="border: none">
+                            <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2"
+                                data-bs-parent="#accordion2">
+                                <div class="accordion-body p-indent">
+                                    <h6>Setting up the Azure SQL Database</h6>
+                                    <ol>
+                                        <li>
+                                            From Azure Portal Favorites menu, select SQL databases
+                                        </li>
+                                        <li>Click Add button</li>
+                                        <li>Create New Resource Group, give it a name</li>
+                                        <li>Select database name from suggestions</li>
+                                        <li>Under select a server, click Create New</li>
+                                        <li>
+                                            Need to set up IP before we can deploy local db to azure
+                                            <ul style="list-style: square">
+                                                <li>
+                                                    Go to Firewall Settings and click an Add Client IP
+                                                </li>
+                                                <li>Click Save button near top</li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            Go to SQL Server Management Studio
+                                            <ul style="list-style: square">
+                                                <li>Find the database to deploy and right click</li>
+                                                <li>Select tasks > Deploy to microsoft azure …</li>
+                                                <li>
+                                                    Enter the azure sql server name and login
+                                                    credentials
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ol>
+                                    <h6>Publishing the Web API From Visual Studio</h6>
+                                    <ol>
+                                        <li>From Home, Click on App Services</li>
+                                        <li>Click Create app service button</li>
+                                        <li>Select resource group (or Create New)</li>
+                                        <li>Give it a name (jungleapi)</li>
+                                        <li>Select runtime stack (.NET Core 3.1</li>
+                                        <li>Select region (West US)</li>
+                                        <li>Click review & create button</li>
+                                        <li>Click Create button … Deployment in progress</li>
+                                        <li>
+                                            After deployment done (Your deployment is complete),
+                                            then click Go to resource <br />
+                                            here you will see your URL, App service plan, etc..
+                                        </li>
+                                        <li>
+                                            In visual studio right click api project and click
+                                            publish
+                                        </li>
+                                        <li>Select resource group, service name</li>
+                                        <li>Click Edit link then Validate Connection</li>
+                                        <li>Click next, then save</li>
+                                        <li>Click publish button</li>
+                                    </ol>
+                                    <h6>
+                                        Create Azure pipeline for .NET with Azure DevOps Starter
+                                    </h6>
+                                    <ol>
+                                        <li>Sign in to Azure portal</li>
+                                        <li>From home page type DevOps Starter in search box</li>
+                                        <li>Click on Create DevOps starter button</li>
+                                        <li>Select .NET from the applications buttons menu</li>
+                                        <li>Select ASP.NET Core</li>
+                                        <li>Select Windows Web App</li>
+                                        <li>
+                                            Enter project name (ex: JunglePipeline) & Azure DevOps
+                                            Organization (ex: JungleOrganization)
+                                        </li>
+                                        <li>Select Location (West)</li>
+                                        <li>Click Done button</li>
+                                        <li>After deployment is complete click Go to resource</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-12">
+            <article class="blog-card" id="article109">
+                <div class="row div-demo-summary">
+                    <div class="col-md-4">
+                        <img src="../../assets/Use-These-Tips-to-Face-Technical-Questions-In-an-Interview.jpg"
+                            class="img-fluid object-fit-sm-contain border rounded" alt="..." />
+                    </div>
+                    <div class="col-md-8 object-fit-sm-contain">
+                        <p class="display-6">
+                            <strong> Common Interview Questions</strong>
+                        </p>
+                        <p>
+                            In this article I have included a few common developer interview
+                            questions.
+                        </p>
+                        <div class="row mt-2">
+                            <div class="col">
+                                <a data-bs-toggle="collapse" (click)="showDetails(5)" data-bs-target="#collapse5"
+                                    aria-expanded="false" aria-controls="collapse5" class="btn btn--with-icon"><i
+                                        class="btn-icon fa fa-long-arrow-right"></i>{{ isDetails5 ? "READ MORE" : "READ
+                                    LESS" }}</a>
+                            </div>
+                        </div>
+                        <div class="row mt-2" *ngIf="!isDetails5">
+                            <div class="col">
+                                <a data-bs-toggle="collapse" data-bs-target="#collapse5" class="btn-link"
+                                    title="Go to top of page" (click)="scrollTo('selectList', 'isDetails5')">
+                                    <i class="fa fa-times"></i> Close
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="blog-card__info">
+                    <div *ngIf="!isDetails5">
+                        <app-interview-questions></app-interview-questions>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-12">
+            <article class="blog-card" id="article110">
+                <div class="row div-demo-summary Example:">
+                    <div class="col-md-4">
+                        <img src="../../assets/technical-interivew-preparation.png"
+                            class="img-fluid object-fit-sm-contain border rounded" alt="..." />
+                    </div>
+                    <div class="col-md-8">
+                        <p class="display-6">
+                            <strong>Coding Challenges</strong>
+                        </p>
+                        <p>
+                        For a more comprehensive list visit 
+                        <a class="external-link" style="cursor: pointer;"
+                                (click)="navigate('leet-code')">My Leet Code Page <i class="fa fa-external-link"
+                                aria-hidden="true"></i></a>
+                        </p>
+
+                        <div class="row mt-2">
+                            <div class="col">
+                                <a data-bs-toggle="collapse" (click)="showDetails(6)" data-bs-target="#collapse6"
+                                    aria-expanded="false" aria-controls="collapse6" class="btn btn--with-icon"><i
+                                        class="btn-icon fa fa-long-arrow-right"></i>{{ isDetails6 ? "READ MORE" : "READ
+                                    LESS" }}</a>
+                            </div>
+                        </div>
+                        <div class="row mt-2" *ngIf="!isDetails6">
+                            <div class="col">
+                                <a data-bs-toggle="collapse" data-bs-target="#collapse6" class="btn-link"
+                                    title="Go to top of page" (click)="scrollTo('selectList', 'isDetails6')">
+                                    <i class="fa fa-times"></i> Close
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="blog-card__info">
+                    <div *ngIf="!isDetails6">
+                        <app-coding-challenges></app-coding-challenges>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>

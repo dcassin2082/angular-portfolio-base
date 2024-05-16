@@ -1,0 +1,241 @@
+<div class="container" style="margin-top: 5em">
+  <p class="display-6 text-center"><strong>Sales Tracker Demo</strong></p>
+</div>
+<div class="container">
+  <div class="row mt-2">
+    <div class="col-md-4 col-xl-3">
+      <label for="salesrep" class="control-label text-muted">
+        <h5>Filter by Sales Person</h5>
+      </label>
+      <select
+        name="salesrep"
+        id="salesrep"
+        [(ngModel)]="salesTrackerService.employeeId"
+        (change)="getEmployee($event.target.value)"
+        class="form-select"
+      >
+        <option disabled value="-1">--Select--</option>
+        <option
+          *ngFor="let employee of salesTrackerService.employees"
+          [value]="employee.EmployeeId"
+        >
+          {{ employee.FirstName }} {{ employee.LastName }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-xl-6" height="400" width="100%" [hidden]="!employeeColumn">
+      <div class="row" *ngIf="employee">
+        <h4 class="pt-2 text-center text-secondary">
+          {{ employee.FirstName }}
+          {{ employee.LastName }}
+        </h4>
+      </div>
+      <div class="row mb-2">
+        <div class="col">
+          <div class="pull-right custom-control custom-switch form-switch">
+            <input
+              id="switch2"
+              type="checkbox"
+              class="form-check-input custom-control-input"
+              role="switch"
+              #chkDetail
+              checked
+              (change)="setDetailChartType()"
+            />&nbsp;
+            <label class="custom-control-label form-label" for="switch2">
+              {{ switchDetailChartType }}</label
+            >
+          </div>
+        </div>
+      </div>
+
+      <canvas id="employee-column">
+        {{ employeeColumn }}
+      </canvas>
+    </div>
+    <div
+      class="col-xl-6"
+      style="border-left: solid 1px #dadada; padding-left: 2em"
+      *ngIf="dataSource && employee"
+    >
+      <div class="row" #target>
+        <div *ngIf="dataSource && employee">
+          <h4 class="pt-2 text-center text-secondary">Employee Details</h4>
+          <div class="row mb-2 mt-2">
+            <div class="col-4">
+              <h6>Employee Id</h6>
+              <p class="form-detail">{{ employee.EmployeeId }}</p>
+            </div>
+            <div class="col-4">
+              <h6>Last Name</h6>
+              <p class="form-detail">
+                {{ employee.LastName }}
+              </p>
+            </div>
+            <div class="col-4">
+              <h6>First Name</h6>
+              <p class="form-detail">
+                {{ employee.FirstName }}
+              </p>
+            </div>
+          </div>
+          <div class="row mb-2 pad-left-20">
+            <div class="col-4">
+              <h6>Title</h6>
+              <p class="form-detail">{{ employee.JobTitle }}</p>
+            </div>
+            <div class="col-4">
+              <h6>Department</h6>
+              <p class="form-detail">{{ employee.Department }}</p>
+            </div>
+            <div class="col-4">
+              <h6>Rate</h6>
+              <p class="form-detail">{{ employee.Rate | currency }}</p>
+            </div>
+          </div>
+          <div class="row mb-2 pad-left-20">
+            <div class="col-4">
+              <h6>Payroll Status</h6>
+              <p class="form-detail">{{ employee.PayrollStatus }}</p>
+            </div>
+            <div class="col-4">
+              <h6>Current Year</h6>
+              <p class="form-detail">{{ currentYear | currency }}</p>
+            </div>
+            <div class="col-4">
+              <h6>All Years</h6>
+              <p class="form-detail">{{ aggregateTotal | currency }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-5 mb-4" *ngIf="employee">
+    <div class="col">
+      <div class="row mb-2">
+        <h4 class="text-center text-secondary">
+          {{ employee.FirstName }} {{ employee.LastName }} Sales History
+        </h4>
+      </div>
+      <div class="row mb-4" id="tbl-employee">
+        <div class="col" *ngIf="employee">
+          <table class="table table-bordered table-condensed table-striped">
+            <thead>
+              <tr style="cursor: none">
+                <th>Year</th>
+                <th>Bikes</th>
+                <th>Components</th>
+                <th>Clothing</th>
+                <th>Accessories</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                class="{{ 'tr-' + i }}"
+                *ngFor="let sale of employeeSalesData; let i = index"
+                id="{{ 'tr-' + i }}"
+              >
+                <td>
+                  {{ sale.year }}
+                </td>
+                <td>
+                  {{ sale.bikes | currency }}
+                </td>
+                <td>
+                  {{ sale.components | currency }}
+                </td>
+                <td>
+                  {{ sale.clothing | currency }}
+                </td>
+                <td>
+                  {{ sale.accessories | currency }}
+                </td>
+                <td>
+                  {{ sale.total | currency }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- <div class="product-sku" *ngIf="employee">
+          <div class="row mb-2 div-center">
+            <div class="col-md-4">
+              <div
+                class="{{ 'tr-' + i }}"
+                *ngFor="let sale of employeeSalesData; let i = index"
+                id="{{ 'tr-' + i }}"
+                style="color: #fff"
+              >
+                <p class="p-header">
+                  {{ sale.year }}
+                </p>
+                <p>Bikes: {{ sale.bikes | currency }}</p>
+                <p>Components: {{ sale.components | currency }}</p>
+                <p>Clothing: {{ sale.clothing | currency }}</p>
+                <p>Accessories: {{ sale.accessories | currency }}</p>
+                <p class="p-footer">Total: {{ sale.total | currency }}</p>
+              </div>
+            </div>
+          </div>
+        </div> -->
+    </div>
+  </div>
+  <div class="row mb-4">
+    <div class="col-md-6 pb-4" style="height: 250px">
+      <h4 class="text-center text-secondary">Sales 2023 (Aggregate)</h4>
+      <div class="row mb-2">
+        <div class="col">
+          <div class="pull-right custom-switch form-switch">
+            <input
+              id="switch3"
+              type="checkbox"
+              class="form-check-input custom-control-input"
+              role="switch"
+              #chkAggregate
+              checked
+              (change)="setAggregateChartType()"
+            />&nbsp;
+            <label class="custom-control-label form-label" for="switch3">
+              {{ switchAggregateChartType }}</label
+            >
+          </div>
+        </div>
+      </div>
+      <canvas id="aggregate-column">
+        {{ aggregateColumn }}
+      </canvas>
+      <div class="row"></div>
+    </div>
+    <div class="col-md-6 pb-4" style="height: 250px">
+      <h4 class="text-center text-secondary">Sales 2023 (Aggregate)</h4>
+      <div class="row mb-2">
+        <div class="col">
+          <div class="pull-right custom-switch form-switch">
+            <input
+              id="switch3"
+              type="checkbox"
+              class="form-check-input custom-control-input"
+              role="switch"
+              #chkAggregate
+              checked
+              (change)="setAggregateChartType()"
+            />&nbsp;
+            <label class="custom-control-label form-label" for="switch3">
+              {{ switchAggregateChartType }}</label
+            >
+          </div>
+        </div>
+      </div>
+      <canvas id="aggregate-column2">
+        {{ aggregateColumn2 }}
+      </canvas>
+      <div class="row"></div>
+    </div>
+  </div>
+</div>
